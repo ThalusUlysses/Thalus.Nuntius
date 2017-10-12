@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TraceBook\Thalus.Nuntiius.Core.csproj" />
+    <ProjectReference Include="..\TraceBook\Thalus.Nuntius.Core.csproj" />
   </ItemGroup>
 
 </Project>

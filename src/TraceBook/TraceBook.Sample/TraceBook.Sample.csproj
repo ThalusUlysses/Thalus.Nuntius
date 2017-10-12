@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TraceBook.Externals\TraceBook.Externals.csproj" />
-    <ProjectReference Include="..\TraceBook\Thalus.Nuntiius.Core.csproj" />
+    <ProjectReference Include="..\TraceBook\Thalus.Nuntius.Core.csproj" />
   </ItemGroup>
 
 </Project>

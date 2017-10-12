@@ -5,7 +5,6 @@ using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Stringify;
 using Thalus.Nuntius.Core.Tracing;
 using Thalus.Nuntius.Core.Tracing.Contracts;
-using TraceBook.Externals;
 
 namespace TraceBook.Sample
 {

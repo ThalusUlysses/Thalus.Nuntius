@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thalus.Nuntiius.Core", "TraceBook\Thalus.Nuntiius.Core.csproj", "{2B4E413C-7A17-486E-898A-688F025FA35C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thalus.Nuntius.Core", "TraceBook\Thalus.Nuntius.Core.csproj", "{2B4E413C-7A17-486E-898A-688F025FA35C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraceBook.Externals", "TraceBook.Externals\TraceBook.Externals.csproj", "{99A438B9-C17D-485C-92B5-C6A825BEED9F}"
 EndProject
