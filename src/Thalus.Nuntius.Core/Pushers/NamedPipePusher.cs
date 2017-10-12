@@ -4,7 +4,7 @@ using System.Threading;
 using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Stringify;
 
-namespace Thalus.Nuntius.Core.Writers
+namespace Thalus.Nuntius.Core.Pushers
 {
     public class NamedPipePusher<TType> : ILeveledPusher<TType> where TType : ILeveledEntry
     {

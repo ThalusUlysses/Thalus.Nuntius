@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Threading;
-using Thalus.Nuntius.Core;
-using Thalus.Nuntius.Core.Contracts;
-using Thalus.Nuntius.Core.Stringify;
 using Thalus.Nuntius.Core.Tracing;
 using Thalus.Nuntius.Core.Tracing.Contracts;
 
-namespace TraceBook.Sample
+namespace Thalus.Nuntius.Samples
 {
     class Program
     {

@@ -1,6 +1,4 @@
-using Thalus.Nuntius.Core.Contracts;
-
-namespace Thalus.Nuntius.Core
+namespace Thalus.Nuntius.Core.Contracts
 {
     /// <summary>
     /// Implements support for evaluating trace level

@@ -1,5 +1,3 @@
-using Thalus.Nuntius.Core.Writers;
-
 namespace Thalus.Nuntius.Core.Contracts
 {
     /// <summary>

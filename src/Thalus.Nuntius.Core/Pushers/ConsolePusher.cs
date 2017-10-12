@@ -2,13 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using System.Xml;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Thalus.Nuntius.Core.Contracts;
-using Thalus.Nuntius.Core.Pushers;
 
-namespace Thalus.Nuntius.Core.Writers
+namespace Thalus.Nuntius.Core.Pushers
 {
     /// <summary>
     /// Implements <see cref="ITraceWriter"/> functionality as Console writer.

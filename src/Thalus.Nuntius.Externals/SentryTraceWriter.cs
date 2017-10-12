@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using SharpRaven;
 using SharpRaven.Data;
-using Thalus.Nuntius.Core;
 using Thalus.Nuntius.Core.Contracts;
 
-namespace TraceBook.Externals
+namespace Thalus.Nuntius.Externals
 {
     public class SentryTraceWriter<TType> : ILeveledPusher<TType> where TType: IEntry
     {

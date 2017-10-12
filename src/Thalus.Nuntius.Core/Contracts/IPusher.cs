@@ -1,5 +1,5 @@
 using System;
-using Thalus.Nuntius.Core.Writers;
+using Thalus.Nuntius.Core.Pushers;
 
 namespace Thalus.Nuntius.Core.Contracts
 {

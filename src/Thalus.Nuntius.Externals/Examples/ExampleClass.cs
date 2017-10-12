@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Thalus.Nuntius.Core;
-using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Tracing;
 using Thalus.Nuntius.Core.Tracing.Contracts;
 
-namespace TraceBook.Externals.Examples
+namespace Thalus.Nuntius.Externals.Examples
 {
     class ExampleClass
     {

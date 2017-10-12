@@ -3,7 +3,7 @@ using System.IO;
 using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Stringify;
 
-namespace Thalus.Nuntius.Core.Writers
+namespace Thalus.Nuntius.Core.Pushers
 {
     /// <summary>
     /// Implements the <see cref="ILeveledPusher{T}"/> as rolling flat file writer

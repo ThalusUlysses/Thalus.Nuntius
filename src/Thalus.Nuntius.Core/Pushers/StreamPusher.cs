@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Thalus.Nuntius.Core.Contracts;
 
-namespace Thalus.Nuntius.Core.Writers
+namespace Thalus.Nuntius.Core.Pushers
 {
     /// <summary>
     /// Implements the <see cref="ILeveledPusher"/> to write on <see cref="Stream"/>
