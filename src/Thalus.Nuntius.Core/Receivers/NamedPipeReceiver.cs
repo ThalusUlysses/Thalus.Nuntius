@@ -14,8 +14,8 @@ namespace Thalus.Nuntius.Core.Receivers
     /// <typeparam name="TType">Pass the type of data to act on</typeparam>
     public class NamedPipeReceiver<TType> where TType: ILeveledEntry, IReceiver<TType>
     {
-        private NamedPipeServerStream _stm;
-        private IObjectifier<TType> _strignifier;
+        private readonly NamedPipeServerStream _stm;
+        private readonly IObjectifier<TType> _strignifier;
         private CancellationTokenSource _cancellationToken;
         private Thread _readThread;
 
@@ -109,7 +109,7 @@ namespace Thalus.Nuntius.Core.Receivers
                     }
                     catch (Exception)
                     {
-                      
+                        // Ok because no one cares and how to write it to
                     }
                 }
             }

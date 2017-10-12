@@ -10,8 +10,8 @@ namespace Thalus.Nuntius.Core.Pushers
     /// </summary>
     public class RollingFilePusher<TType> : ILeveledPusher<TType> where  TType: ILeveledEntry
     {
-        private int _maxLength;
-        private SingleFilePusher<TType> _singleFilePusher;
+        private readonly int _maxLength;
+        private readonly SingleFilePusher<TType> _singleFilePusher;
         private Level _level;
 
         /// <summary>

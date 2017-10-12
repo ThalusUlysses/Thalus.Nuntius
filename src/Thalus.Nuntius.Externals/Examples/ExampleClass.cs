@@ -6,12 +6,7 @@ namespace Thalus.Nuntius.Externals.Examples
 {
     class ExampleClass
     {
-        static ExampleClass()
-        {
-          
-        }
-
-        private ITraceBook _trace = STraceBook.Get(nameof(ExampleClass));
+        private readonly ITraceBook _trace = STraceBook.Get(nameof(ExampleClass));
 
         public void DoSomething()
         {

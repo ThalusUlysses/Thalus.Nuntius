@@ -59,7 +59,7 @@ namespace Thalus.Nuntius.Samples
 
     public class ExampleClass
     {
-        private ITraceBook _tracebook = STraceBook.Get(nameof(ExampleClass));
+        private readonly ITraceBook _tracebook = STraceBook.Get(nameof(ExampleClass));
 
         public void Perfom()
         {

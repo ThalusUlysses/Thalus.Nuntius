@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Thalus.Nuntius.Core.Contracts;
 
 namespace Thalus.Nuntius.Core.Tracing.Contracts
@@ -9,7 +11,11 @@ namespace Thalus.Nuntius.Core.Tracing.Contracts
         string Caller { get; }
         string File { get; }
         int Line { get; }
-
+        IDictionary<string,string> Tags { get; }
         Level Level { get; }
+
+        object Extra { get; }
+
+        DateTime UtcStamp { get; }
     }
 }

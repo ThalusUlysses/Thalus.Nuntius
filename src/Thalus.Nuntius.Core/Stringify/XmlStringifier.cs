@@ -6,7 +6,7 @@ using Thalus.Nuntius.Core.Tracing;
 namespace Thalus.Nuntius.Core.Stringify
 {
     /// <summary>
-    /// implements the <see cref="IStringifier"/> functionality for XML
+    /// implements the <see cref="IStringifier{T}"/> functionality for XML
     /// using the <see cref="DataContractSerializer"/> for <see cref="TraceEntryFacade"/>
     /// </summary>
     public class XmlStringifier<TType> : IStringifier<TType>

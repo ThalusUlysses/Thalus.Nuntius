@@ -6,11 +6,15 @@ using Thalus.Nuntius.Core.Stringify;
 
 namespace Thalus.Nuntius.Core.Pushers
 {
+    /// <summary>
+    ///Implements the <see cref="NamedPipePusher{T}"/> functionality such like <see cref="Push"/>
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
     public class NamedPipePusher<TType> : ILeveledPusher<TType> where TType : ILeveledEntry
     {
-        private NamedPipeClientStream _stm;
-        private StreamWriter _writer;
-        private IStringifier<TType> _stringifier;
+        private readonly NamedPipeClientStream _stm;
+        private readonly StreamWriter _writer;
+        private readonly IStringifier<TType> _stringifier;
         private CancellationTokenSource _cancellationToken;
         private Level _level;
 
@@ -60,6 +64,9 @@ namespace Thalus.Nuntius.Core.Pushers
 
             if (!_stm.IsConnected)
             {
+                _cancellationToken?.Cancel();
+
+                _cancellationToken = new CancellationTokenSource();
                 _stm.ConnectAsync(_cancellationToken.Token);
             }
 

@@ -11,7 +11,7 @@ namespace Thalus.Nuntius.Externals
     {
         private Level _level;
 
-        private IRavenClient _client;
+        private readonly IRavenClient _client;
 
         public SentryTraceWriter(string dsn, Level level) : this(new RavenClient(dsn), level)
         {

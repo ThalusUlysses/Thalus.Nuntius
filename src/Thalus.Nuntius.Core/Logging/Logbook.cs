@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading.Tasks;
 using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Logging.Contracts;
@@ -9,8 +8,8 @@ namespace Thalus.Nuntius.Core.Logging
 {
     class LogBook : ILogBook
     {
-        private List<ILeveledPusher<ILeveledEntry>> _writers;
-        private string _scope;
+        private readonly List<ILeveledPusher<ILeveledEntry>> _writers;
+        private readonly string _scope;
 
         public LogBook(List<ILeveledPusher<ILeveledEntry>> writers, string scope)
         {

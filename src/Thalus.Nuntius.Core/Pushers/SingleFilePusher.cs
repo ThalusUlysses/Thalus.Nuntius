@@ -6,14 +6,17 @@ using Thalus.Nuntius.Core.Stringify;
 namespace Thalus.Nuntius.Core.Pushers
 {
     /// <summary>
-    /// Implements the <see cref="ILeveledPusher"/> functionality as single file
+    /// Implements the <see cref="ILeveledPusher{T}"/> functionality as single file
     /// writer
     /// </summary>
     public class SingleFilePusher<TType> : ILeveledPusher<TType> where TType: ILeveledEntry
     {
-        private IStringifier<TType> _stringifier;
+        private readonly IStringifier<TType> _stringifier;
         private Level _level;
         
+        /// <summary>
+        /// Gets the <see cref="FullName"/> if the <see cref="SingleFilePusher{TType}"/>
+        /// </summary>
         public string FullName { get; }
 
         /// <summary>
@@ -21,7 +24,7 @@ namespace Thalus.Nuntius.Core.Pushers
         /// the passed parameters
         /// </summary>
         /// <param name="file">Pass the file name to write items to</param>
-        /// <remarks>Please note <see cref="JsonStringifier"/> is used as <see cref="IStringifier"/></remarks>
+        /// <remarks>Please note <see cref="JsonStringifier{T}"/> is used as <see cref="IStringifier{T}"/></remarks>
         public SingleFilePusher(string file ) : this(new FileInfo(file), new JsonStringifier<TType>(),
             Level.Debug | Level.Error | Level.Fatal | Level.Info |
             Level.Warning)
@@ -34,7 +37,7 @@ namespace Thalus.Nuntius.Core.Pushers
         /// the passed parameters
         /// </summary>
         /// <param name="file">Pass the file name to write items to</param>
-        /// <param name="stringifier">Pass the stringifie rto be used <see cref="JsonStringifier"/></param>
+        /// <param name="stringifier">Pass the stringifie rto be used <see cref="JsonStringifier{T}"/></param>
         public SingleFilePusher(string file, IStringifier<TType> stringifier) : this(new FileInfo(file), stringifier,
             Level.Debug | Level.Error | Level.Fatal | Level.Info |
             Level.Warning)
@@ -47,8 +50,8 @@ namespace Thalus.Nuntius.Core.Pushers
         /// the passed parameters
         /// </summary>
         /// <param name="file">Pass the file name to write items to</param>
-        /// <param name="stringifier">Pass the stringifie rto be used <see cref="JsonStringifier"/></param>
-        /// <param name="level">Pass teh <see cref="Level"/> flags associated with the <see cref="ILeveledPusher"/></param>
+        /// <param name="stringifier">Pass the stringifie rto be used <see cref="JsonStringifier{T}"/></param>
+        /// <param name="level">Pass teh <see cref="Level"/> flags associated with the <see cref="ILeveledPusher{T}"/></param>
         public SingleFilePusher(string file, IStringifier<TType> stringifier, Level level) : this(new FileInfo(file), stringifier, level)
         {
 
@@ -71,7 +74,7 @@ namespace Thalus.Nuntius.Core.Pushers
         /// the passed parameters
         /// </summary>
         /// <param name="file">Pass the file name to write items to</param>
-        /// <param name="stringifier">Pass the stringifie rto be used <see cref="JsonStringifier"/></param>
+        /// <param name="stringifier">Pass the stringifie rto be used <see cref="JsonStringifier{T}"/></param>
         public SingleFilePusher(FileInfo file, IStringifier<TType> stringifier) : this(file, stringifier,
             Level.Debug | Level.Error | Level.Fatal | Level.Info |
             Level.Warning)
@@ -84,8 +87,8 @@ namespace Thalus.Nuntius.Core.Pushers
         /// the passed parameters
         /// </summary>
         /// <param name="file">Pass the file name to write items to</param>
-        /// <param name="stringifier">Pass the stringifie rto be used <see cref="JsonStringifier"/></param>
-        /// <param name="level">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher"/></param>
+        /// <param name="stringifier">Pass the stringifie rto be used <see cref="JsonStringifier{T}"/></param>
+        /// <param name="level">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher{T}"/></param>
         public SingleFilePusher(FileInfo file, IStringifier<TType> stringifier, Level level)
         {
             FullName = file.FullName;
@@ -94,9 +97,9 @@ namespace Thalus.Nuntius.Core.Pushers
         }
 
         /// <summary>
-        /// Writes a <see cref="ITraceEntry"/> to the underlying target
+        /// Writes a <see cref="IEntry"/> to the underlying target
         /// </summary>
-        /// <param name="entry">Pass the the <see cref="ITraceEntry"/> to write</param>
+        /// <param name="entry">Pass the the <see cref="IEntry"/> to write</param>
         public void Push(TType entry)
 
         {

@@ -18,9 +18,9 @@ namespace Thalus.Nuntius.Core.Tracing
         private static IDictionary<string, ITraceBook> _books = new ConcurrentDictionary<string, ITraceBook>();
 
         /// <summary>
-        /// Registers a trace write to underlying <see cref="ILeveledPusher"/> colleciton
+        /// Registers a trace write to underlying <see cref="ILeveledPusher{T}"/> colleciton
         /// </summary>
-        /// <param name="writer">Pass the tobe registered <see cref="ILeveledPusher"/></param>
+        /// <param name="writer">Pass the tobe registered <see cref="ILeveledPusher{T}"/></param>
         public static void Register(ILeveledPusher<ILeveledEntry> writer)
         {
             lock (_writers)
@@ -42,12 +42,12 @@ namespace Thalus.Nuntius.Core.Tracing
         }
 
         /// <summary>
-        /// Creates a <see cref="ITraceEntry"/> initialized with the passed parameters
+        /// Creates a <see cref="IEntry"/> initialized with the passed parameters
         /// </summary>
-        /// <param name="level">Pass the trace level of the <see cref="ITraceEntry"/></param>
-        /// <param name="scope">Pass the scope of the <see cref="ITraceEntry"/>. Is "general" if not passed</param>
-        /// <param name="text">Pass the text associated with the <see cref="ITraceEntry"/>. Is "null" if not passed</param>
-        /// <param name="obj">Pass teh additional extra data of the <see cref="ITraceEntry"/>. Is "null" if not passed</param>
+        /// <param name="level">Pass the trace level of the <see cref="IEntry"/></param>
+        /// <param name="scope">Pass the scope of the <see cref="IEntry"/>. Is "general" if not passed</param>
+        /// <param name="text">Pass the text associated with the <see cref="IEntry"/>. Is "null" if not passed</param>
+        /// <param name="obj">Pass teh additional extra data of the <see cref="IEntry"/>. Is "null" if not passed</param>
         /// <param name="caller">Do not pass anything. Is added by using <see cref="CallerMemberNameAttribute"/></param>
         /// <param name="filePath">Do not pass anything. Is added by using <see cref="CallerFilePathAttribute"/></param>
         /// <param name="line">Do not pass anything. Is added by using <see cref="CallerLineNumberAttribute"/></param>
@@ -62,12 +62,12 @@ namespace Thalus.Nuntius.Core.Tracing
         }
 
         /// <summary>
-        /// Creates a <see cref="ITraceEntry"/> initialized with the passed parameters
+        /// Creates a <see cref="IEntry"/> initialized with the passed parameters
         /// </summary>
-        /// <param name="level">Pass the trace level of the <see cref="ITraceEntry"/></param>
-        /// <param name="scope">Pass the scope of the <see cref="ITraceEntry"/>. Is "general" if not passed</param>
-        /// <param name="text">Pass the text associated with the <see cref="ITraceEntry"/>. Is "null" if not passed</param>
-        /// <param name="obj">Pass the additional extra data of the <see cref="ITraceEntry"/>. Is "null" if not passed</param>
+        /// <param name="level">Pass the trace level of the <see cref="IEntry"/></param>
+        /// <param name="scope">Pass the scope of the <see cref="IEntry"/>. Is "general" if not passed</param>
+        /// <param name="text">Pass the text associated with the <see cref="IEntry"/>. Is "null" if not passed</param>
+        /// <param name="obj">Pass the additional extra data of the <see cref="IEntry"/>. Is "null" if not passed</param>
         /// <param name="utc">Pass the <see cref="DateTime"/> the trace entry occured as UTC </param>
         /// <param name="caller">Pass the caller name</param>
         /// <param name="filePath">Pass the file name</param>

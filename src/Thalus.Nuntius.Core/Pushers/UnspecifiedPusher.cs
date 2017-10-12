@@ -4,20 +4,20 @@ using Thalus.Nuntius.Core.Contracts;
 namespace Thalus.Nuntius.Core.Pushers
 {
     /// <summary>
-    /// Implements the <see cref="ILeveledPusher"/> functionality for an unspecified
+    /// Implements the <see cref="ILeveledPusher{T}"/> functionality for an unspecified
     /// text writer
     /// </summary>
     public class UnspecifiedPusher<TType> : ILeveledPusher<TType> where TType : ILeveledEntry
     {
         private Level _level;
-        private Action<TType> _writeLine;
+        private readonly Action<TType> _writeLine;
 
         /// <summary>
         /// Create san instance of <see cref="UnspecifiedPusher{TType}"/> initialized with 
         /// the passed parameters
         /// </summary>
         /// <param name="writeLineDelegate">Pass th eto be used writer delegate</param>
-        /// <param name="level">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher"/></param>
+        /// <param name="level">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher{T}"/></param>
         public UnspecifiedPusher(Action<TType> writeLineDelegate,Level level)
         {
             _level = level;

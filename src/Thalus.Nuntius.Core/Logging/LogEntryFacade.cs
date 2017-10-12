@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Logging.Contracts;
 

@@ -1,4 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
+using Newtonsoft.Json.Serialization;
+using Thalus.Nuntius.Core.Contracts;
 
 namespace Thalus.Nuntius.Core.Tracing.Contracts
 {
@@ -9,7 +11,7 @@ namespace Thalus.Nuntius.Core.Tracing.Contracts
     public interface ITraceBook
     {
         /// <summary>
-        /// Writes an error log entry to registered or underlying <see cref="ITraceWriter"/>s.
+        /// Writes an error log entry to registered or underlying <see cref="IPusher{TType}"/>s.
         /// </summary>
         /// <param name="text">Pass tex that is associated with the error occured</param>
         /// <param name="obj">Pass a set of object that you want to be logged additionally</param>

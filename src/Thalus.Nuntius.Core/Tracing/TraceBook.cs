@@ -9,8 +9,8 @@ namespace Thalus.Nuntius.Core.Tracing
 {
     class  TraceBook : ITraceBook
     {
-        private List<ILeveledPusher<ILeveledEntry>> _writers;
-        private string _scope;
+        private readonly List<ILeveledPusher<ILeveledEntry>> _writers;
+        private readonly string _scope;
 
         public TraceBook(List<ILeveledPusher<ILeveledEntry>> writers, string scope)
         {

@@ -19,37 +19,17 @@ namespace Thalus.Nuntius.Core.Stringify
             b.Append($"{e.Tags["scope"]},");
             b.Append($"{e.Tags["text"]},");
 
-            if (e.Tags != null)
-            {
-                b.Append($"{SwoshTags(e.Tags)}");
-            }
-            else
-            {
-                b.Append(",");
-            }
+            b.Append(e.Tags != null ? $"{SwoshTags(e.Tags)}" : ",");
+            b.Append(e.Extra != null ? $"{SwoshData(e.Extra)}" : ",");
 
-            if (e.Extra != null)
-            {
-                b.Append($"{SwoshData(e.Extra)}");
-            }
-            else
-            {
-                b.Append(",");
-            }
             return b.ToString();
         }
 
         private static string SwoshData(object d)
         {
-            IEnumerable arr;
-            if (d is IEnumerable)
-            {
-                arr = (IEnumerable) d;
-            }
-            else
-            {
-                arr = new [] {d};
-            }
+            var enumerable = d as IEnumerable;
+
+            var arr = enumerable ?? new [] {d};
 
             StringBuilder b = new StringBuilder();
 

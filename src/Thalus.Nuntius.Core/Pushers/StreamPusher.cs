@@ -5,20 +5,20 @@ using Thalus.Nuntius.Core.Contracts;
 namespace Thalus.Nuntius.Core.Pushers
 {
     /// <summary>
-    /// Implements the <see cref="ILeveledPusher"/> to write on <see cref="Stream"/>
+    /// Implements the <see cref="ILeveledPusher{T}"/> to write on <see cref="Stream"/>
     /// </summary>
     public class StreamPusher<TType> : ILeveledPusher<TType>, IDisposable where TType: ILeveledEntry
     {
-        private StreamWriter _stm;
+        private readonly StreamWriter _stm;
         private Level _logLevels;
-        private IStringifier<TType> _stringifier;
+        private readonly IStringifier<TType> _stringifier;
 
         /// <summary>
         /// Creates an instance of <see cref="StreamPusher{TType}"/> with the passed parameters
         /// </summary>
         /// <param name="stm">Pass the <see cref="Stream"/> to write to</param>
-        /// <param name="stringifier">Pass the to be used <see cref="IStringifier"/></param>
-        /// <param name="logLevels">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher"/></param>
+        /// <param name="stringifier">Pass the to be used <see cref="IStringifier{T}"/></param>
+        /// <param name="logLevels">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher{T}"/></param>
         public StreamPusher(Stream stm, IStringifier<TType> stringifier, Level logLevels)
         {
             _logLevels = logLevels;
