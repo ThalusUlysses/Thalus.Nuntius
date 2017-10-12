@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using SharpRaven;
 using SharpRaven.Data;
-using TraceBook.Contracts;
+using Thalus.Nuntius.Core;
+using Thalus.Nuntius.Core.Contracts;
 
 namespace TraceBook.Externals
 {
-    public class SentryTraceWriter : ITraceWriter
+    public class SentryTraceWriter<TType> : ILeveledPusher<TType> where TType: IEntry
     {
         private Level _level;
 
@@ -25,7 +27,7 @@ namespace TraceBook.Externals
             _level = level;
         }
 
-        public void Write(ITraceEntry entries)
+        public void Push(TType entries)
         {
             if (entries == null || _client == null)
             {
@@ -34,7 +36,7 @@ namespace TraceBook.Externals
             
             lock (_client)
             {
-                if (!STrace.IsLog(_level, entries.Level))
+                if (!SLevel.IsLog(_level, entries.Level))
                 {
                     return;
                 }
@@ -48,11 +50,27 @@ namespace TraceBook.Externals
             }
         }
 
-        private SentryEvent GetEventByType(ITraceEntry entries)
+        private SentryEvent GetEventByType(TType entries)
         {
-            var t = entries.Data.FirstOrDefault(i => i is Exception) as Exception;
+            var t = entries.Extra as Exception;
 
-            var msg = new SentryMessage(entries.Text);
+            if (t == null)
+            {
+                IEnumerable en = entries.Extra as IEnumerable;
+                if (en !=null)
+                {
+                    foreach (object o in en)
+                    {
+                        t = o as Exception;
+                        if (t != null)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            var msg = new SentryMessage(entries.Tags["text"]);
             SentryEvent ev;
             if (t != null)
             {
@@ -69,15 +87,15 @@ namespace TraceBook.Externals
             SetTags(ev, entries);
             SetErrolLevel(ev, entries);
 
-            ev.Extra = entries.Data;
+            ev.Extra = entries.Extra;
 
             return ev;
         }
 
-        private void SetTags(SentryEvent ev, ITraceEntry entries)
+        private void SetTags(SentryEvent ev, IEntry entries)
         {
-            ev.Tags["scope"] = entries.Scope;
-            ev.Tags["utc-stamp"] = entries.UtcStamp.ToString(CultureInfo.CurrentUICulture);
+            ev.Tags["scope"] = entries.Tags["scope"];
+            ev.Tags["utc-stamp"] = entries.Tags["utc-stamp"];
 
             foreach (KeyValuePair<string, string> pair in entries.Tags)
             {
@@ -85,29 +103,29 @@ namespace TraceBook.Externals
             }
         }
 
-        private void SetErrolLevel(SentryEvent ev, ITraceEntry entries)
+        private void SetErrolLevel(SentryEvent ev, ILeveledEntry entries)
         {
-            if (STrace.IsLogDebug(entries.Level))
+            if (SLevel.IsLogDebug(entries.Level))
             {
                 ev.Level = ErrorLevel.Debug;
             }
 
-            if (STrace.IsLogInfo(entries.Level))
+            if (SLevel.IsLogInfo(entries.Level))
             {
                 ev.Level = ErrorLevel.Info;
             }
 
-            if (STrace.IsLogWarning(entries.Level))
+            if (SLevel.IsLogWarning(entries.Level))
             {
                 ev.Level = ErrorLevel.Warning;
             }
 
-            if (STrace.IsLogErrors(entries.Level))
+            if (SLevel.IsLogErrors(entries.Level))
             {
                 ev.Level = ErrorLevel.Error;
             }
 
-            if (STrace.IsLogFatal(entries.Level))
+            if (SLevel.IsLogFatal(entries.Level))
             {
                 ev.Level = ErrorLevel.Fatal;
             }

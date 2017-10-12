@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TraceBook.Contracts;
-using TraceBook.Writers;
+using Thalus.Nuntius.Core;
+using Thalus.Nuntius.Core.Contracts;
+using Thalus.Nuntius.Core.Tracing;
+using Thalus.Nuntius.Core.Tracing.Contracts;
 
 namespace TraceBook.Externals.Examples
 {
@@ -13,7 +15,7 @@ namespace TraceBook.Externals.Examples
           
         }
 
-        private ITraceBook _trace = STrace.Get(nameof(ExampleClass));
+        private ITraceBook _trace = STraceBook.Get(nameof(ExampleClass));
 
         public void DoSomething()
         {
@@ -24,7 +26,7 @@ namespace TraceBook.Externals.Examples
             }
             catch (Exception e)
             {
-                STrace.Get().Fatal("Some idiot did something wrong", new object[] {e});
+                STraceBook.Get().Fatal("Some idiot did something wrong", new object[] {e});
                 throw;
             }
         }

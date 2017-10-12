@@ -1,41 +1,42 @@
 using System;
 using System.IO;
-using TraceBook.Contracts;
+using Thalus.Nuntius.Core.Contracts;
 
-namespace TraceBook.Writers
+namespace Thalus.Nuntius.Core.Writers
 {
     /// <summary>
-    /// Implements the <see cref="ITraceWriter"/> to write on <see cref="Stream"/>
+    /// Implements the <see cref="ILeveledPusher"/> to write on <see cref="Stream"/>
     /// </summary>
-    public class ToStreamWriter : ITraceWriter, IDisposable
+    public class StreamPusher<TType> : ILeveledPusher<TType>, IDisposable where TType: ILeveledEntry
     {
         private StreamWriter _stm;
-        private Level _level;
-        private IStringifier _stringifier;
+        private Level _logLevels;
+        private IStringifier<TType> _stringifier;
 
         /// <summary>
-        /// Creates an instance of <see cref="ToStreamWriter"/> with the passed parameters
+        /// Creates an instance of <see cref="StreamPusher{TType}"/> with the passed parameters
         /// </summary>
         /// <param name="stm">Pass the <see cref="Stream"/> to write to</param>
         /// <param name="stringifier">Pass the to be used <see cref="IStringifier"/></param>
-        /// <param name="level">Pass the <see cref="Level"/> flags associated with the <see cref="ITraceWriter"/></param>
-        public ToStreamWriter(Stream stm, IStringifier stringifier, Level level)
+        /// <param name="logLevels">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher"/></param>
+        public StreamPusher(Stream stm, IStringifier<TType> stringifier, Level logLevels)
         {
-            _level = level;
+            _logLevels = logLevels;
             _stringifier = stringifier;
             _stm = new StreamWriter(stm);
         }
 
         /// <inheritdoc />
-        public void Write(ITraceEntry entries)
+        public void Push(TType entries)
         {
-            if (!STrace.IsLog(_level, entries.Level))
+            if (!SLevel.IsLog(_logLevels, entries.Level))
             {
                 return;
             }
 
             var st = _stringifier.Stringify(entries);
             _stm.WriteLine(st);
+            _stm.Flush();
         }
 
         /// <inheritdoc />
@@ -43,7 +44,7 @@ namespace TraceBook.Writers
         {
             lock (_stm)
             {
-                _level = cats;
+                _logLevels = cats;
             }
         }
 

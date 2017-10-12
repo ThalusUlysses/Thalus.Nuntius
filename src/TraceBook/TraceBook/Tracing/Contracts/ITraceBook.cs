@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace TraceBook.Contracts
+namespace Thalus.Nuntius.Core.Tracing.Contracts
 {
     /// <summary>
     /// Publises the public members of <see cref="ITraceBook"/> such like <see cref="Errors"/>

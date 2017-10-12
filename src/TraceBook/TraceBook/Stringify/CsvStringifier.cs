@@ -1,26 +1,23 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using TraceBook.Contracts;
-using TraceBook.Writers;
+using Thalus.Nuntius.Core.Contracts;
 
-namespace TraceBook.Stringify
+namespace Thalus.Nuntius.Core.Stringify
 {
     /// <summary>
-    /// implements the <see cref="IStringifier"/> for CSV output
+    /// implements the <see cref="IStringifier{T}"/> for CSV output
     /// </summary>
-    public class CsvStringifier : IStringifier
+    public class CsvStringifier : IStringifier<IEntry>
     {
-        string IStringifier.Stringify(object obj)
+        string IStringifier<IEntry>.Stringify(IEntry e)
         {
-            ITraceEntry e = (ITraceEntry) obj;
-            
             StringBuilder b = new StringBuilder();
 
-            b.Append($"{e.UtcStamp},");
+            b.Append($"{e.Tags["utc-stamp"]},");
             b.Append($"{e.Level},");
-            b.Append($"{e.Scope},");
-            b.Append($"{e.Text},");
+            b.Append($"{e.Tags["scope"]},");
+            b.Append($"{e.Tags["text"]},");
 
             if (e.Tags != null)
             {
@@ -31,9 +28,9 @@ namespace TraceBook.Stringify
                 b.Append(",");
             }
 
-            if (e.Data != null)
+            if (e.Extra != null)
             {
-                b.Append($"{SwoshData(e.Data)}");
+                b.Append($"{SwoshData(e.Extra)}");
             }
             else
             {
@@ -42,11 +39,21 @@ namespace TraceBook.Stringify
             return b.ToString();
         }
 
-        private static string SwoshData(Object[] d)
+        private static string SwoshData(object d)
         {
+            IEnumerable arr;
+            if (d is IEnumerable)
+            {
+                arr = (IEnumerable) d;
+            }
+            else
+            {
+                arr = new [] {d};
+            }
+
             StringBuilder b = new StringBuilder();
 
-            foreach (var p in d)
+            foreach (var p in arr)
             {
                 if (b.Length > 0)
                 {

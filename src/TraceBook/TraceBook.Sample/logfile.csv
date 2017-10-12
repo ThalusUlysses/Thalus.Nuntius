@@ -1,3 +1,12 @@
 10/5/2017 2:13:32 PM,Debug,general,Main has been started,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"25",
 10/5/2017 2:13:32 PM,Warning,ExampleClass,Perform called,"Caller":"Perfom","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"48",
-10/5/2017 2:13:32 PM,Fatal,general,Something went wrong,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"35"Just to check,System.String[]
+10/5/2017 2:13:32 PM,Fatal,general,Something went wrong,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"35"Just to check,System.String[]10/10/2017 7:44:50 PM,Debug,general,Main has been started,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"33",
+10/10/2017 7:45:22 PM,Debug,general,Main has been started,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"33",
+10/10/2017 7:45:22 PM,Warning,ExampleClass,Perform called,"Caller":"Perfom","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"56",
+10/10/2017 7:45:22 PM,Fatal,general,Something went wrong,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"43"Just to check,System.String[]
+10/10/2017 7:45:56 PM,Debug,general,Main has been started,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"33",
+10/10/2017 7:45:57 PM,Warning,ExampleClass,Perform called,"Caller":"Perfom","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"56",
+10/10/2017 7:46:06 PM,Fatal,general,Something went wrong,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"43"Just to check,System.String[]
+10/10/2017 7:47:25 PM,Debug,general,Main has been started,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"33",
+10/10/2017 7:47:27 PM,Warning,ExampleClass,Perform called,"Caller":"Perfom","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"56",
+10/10/2017 7:47:29 PM,Fatal,general,Something went wrong,"Caller":"Main","File":"C:\_\TraceBook\src\TraceBook\TraceBook.Sample\Program.cs","line":"43"Just to check,System.String[]

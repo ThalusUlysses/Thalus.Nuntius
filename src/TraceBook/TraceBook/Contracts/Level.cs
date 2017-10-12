@@ -1,6 +1,6 @@
 using System;
 
-namespace TraceBook.Contracts
+namespace Thalus.Nuntius.Core.Contracts
 {
     /// <summary>
     /// Defines the log levels suhc like <see cref="Error"/>

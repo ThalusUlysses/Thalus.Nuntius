@@ -1,18 +1,17 @@
-using System.IO;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using TraceBook.Contracts;
-using TraceBook.Writers;
+using Thalus.Nuntius.Core.Contracts;
+using Thalus.Nuntius.Core.Tracing;
 
-namespace TraceBook.Stringify
+namespace Thalus.Nuntius.Core.Stringify
 {
     /// <summary>
     /// implements the <see cref="IStringifier"/> functionality for XML
-    /// using the <see cref="DataContractSerializer"/> for <see cref="TraceEntry"/>
+    /// using the <see cref="DataContractSerializer"/> for <see cref="TraceEntryFacade"/>
     /// </summary>
-    public class XmlStringifier : IStringifier
+    public class XmlStringifier<TType> : IStringifier<TType>
     {
-        string IStringifier.Stringify(object obj)
+        string IStringifier<TType>.Stringify(TType obj)
         {
             var json = JsonConvert.SerializeObject(obj);
             var xml =  JsonConvert.DeserializeXmlNode(json, "trace");

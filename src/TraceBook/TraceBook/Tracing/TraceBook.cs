@@ -2,16 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using TraceBook.Contracts;
+using Thalus.Nuntius.Core.Contracts;
+using Thalus.Nuntius.Core.Tracing.Contracts;
 
-namespace TraceBook
+namespace Thalus.Nuntius.Core.Tracing
 {
-    class  Tracebook : ITraceBook
+    class  TraceBook : ITraceBook
     {
-        private List<ITraceWriter> _writers;
+        private List<ILeveledPusher<ILeveledEntry>> _writers;
         private string _scope;
 
-        public Tracebook(List<ITraceWriter> writers, string scope)
+        public TraceBook(List<ILeveledPusher<ILeveledEntry>> writers, string scope)
         {
             _writers = writers;
             _scope = scope;
@@ -19,13 +20,13 @@ namespace TraceBook
 
         private void Write(string text,object[] obj, Level level, string caller, string filePath, int line )
         {
-            ITraceEntry entry = STrace.InternalEntry(level, _scope, text, obj, DateTime.UtcNow,caller, filePath, line);
+            IEntry entry = STraceBook.InternalEntry(level, _scope, text, obj, DateTime.UtcNow,caller, filePath, line);
 
             Parallel.ForEach(_writers, (i) =>
             {
                 try
                 {
-                    i.Write(entry);
+                    i.Push(entry);
                 }
                 catch (Exception)
                 {

@@ -1,33 +1,33 @@
 using System;
-using TraceBook.Contracts;
+using Thalus.Nuntius.Core.Contracts;
 
-namespace TraceBook.Writers
+namespace Thalus.Nuntius.Core.Pushers
 {
     /// <summary>
-    /// Implements the <see cref="ITraceWriter"/> functionality for an unspecified
+    /// Implements the <see cref="ILeveledPusher"/> functionality for an unspecified
     /// text writer
     /// </summary>
-    public class UnspecifiedTextWriter : ITraceWriter
+    public class UnspecifiedPusher<TType> : ILeveledPusher<TType> where TType : ILeveledEntry
     {
         private Level _level;
-        private Action<ITraceEntry> _writeLine;
+        private Action<TType> _writeLine;
 
         /// <summary>
-        /// Create san instance of <see cref="UnspecifiedTextWriter"/> initialized with 
+        /// Create san instance of <see cref="UnspecifiedPusher{TType}"/> initialized with 
         /// the passed parameters
         /// </summary>
         /// <param name="writeLineDelegate">Pass th eto be used writer delegate</param>
-        /// <param name="level">Pass the <see cref="Level"/> flags associated with the <see cref="ITraceWriter"/></param>
-        public UnspecifiedTextWriter(Action<ITraceEntry> writeLineDelegate,Level level)
+        /// <param name="level">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher"/></param>
+        public UnspecifiedPusher(Action<TType> writeLineDelegate,Level level)
         {
             _level = level;
             _writeLine = writeLineDelegate;
         }
 
         /// <inheritdoc />
-        public void Write(ITraceEntry entries)
+        public void Push(TType entries)
         {
-            if (!STrace.IsLog(_level, entries.Level))
+            if (!SLevel.IsLog(_level, entries.Level))
             {
                 return;
             }

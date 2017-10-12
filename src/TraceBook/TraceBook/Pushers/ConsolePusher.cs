@@ -2,39 +2,43 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using TraceBook.Contracts;
+using System.Xml;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Thalus.Nuntius.Core.Contracts;
+using Thalus.Nuntius.Core.Pushers;
 
-namespace TraceBook.Writers
+namespace Thalus.Nuntius.Core.Writers
 {
     /// <summary>
     /// Implements <see cref="ITraceWriter"/> functionality as Console writer.
-    /// Uses underlying <see cref="UnspecifiedTextWriter"/>
+    /// Uses underlying <see cref="UnspecifiedPusher{TType}"/>
     /// </summary>
-    public class ConsoleTextWriter : UnspecifiedTextWriter
+    public class ConsolePusher<TType> : UnspecifiedPusher<TType> where TType: IEntry
     {
         /// <summary>
-        /// Creates an instance of <see cref="ConsoleTextWriter"/>with defaults
+        /// Creates an instance of <see cref="ConsolePusher{TType}"/>with defaults
         /// </summary>
-        public ConsoleTextWriter() : base(Handle, Level.Debug | Level.Error | Level.Fatal | Level.Info |
+        public ConsolePusher() : base(Handle, Level.Debug | Level.Error | Level.Fatal | Level.Info |
                                                   Level.Warning)
         {
         }
 
         /// <summary>
-        /// Creates an instance of <see cref="ConsoleTextWriter"/> with teh passed parameters
+        /// Creates an instance of <see cref="ConsolePusher{TType}"/> with teh passed parameters
         /// </summary>
         /// <param name="level">Pass trace level flags that are associated with the <see cref="ITraceWriter"/></param>
-        public ConsoleTextWriter(Level level) : base(Handle, level)
+        public ConsolePusher(Level level) : base(Handle, level)
         {
         }
 
-        private static void Handle(ITraceEntry e)
+        private static void Handle(TType e)
         {
-            if (STrace.IsLogErrors(e.Level) || STrace.IsLogFatal(e.Level))
+            if (SLevel.IsLogErrors(e.Level) || SLevel.IsLogFatal(e.Level))
             {
                 WriteLine(e, ConsoleColor.DarkRed);
             }
-            else if (STrace.IsLogWarning(e.Level))
+            else if (SLevel.IsLogWarning(e.Level))
             {
                 WriteLine(e, ConsoleColor.DarkYellow);
             }
@@ -61,11 +65,21 @@ namespace TraceBook.Writers
         }
 
 
-        private static string SwoshData(object[] d)
+        private static string SwoshData(object d)
         {
+            IEnumerable arr;
+            if (!(d is IEnumerable))
+            {
+                arr = new[] {d};
+            }
+            else
+            {
+                arr = (IEnumerable) d;
+            }
+
             StringBuilder b = new StringBuilder();
 
-            foreach (object p in d)
+            foreach (object p in arr)
             {
                 if (b.Length > 0)
                 {
@@ -79,19 +93,19 @@ namespace TraceBook.Writers
         }
 
 
-        private static void WriteLine(ITraceEntry text, ConsoleColor c)
+        private static void WriteLine(TType text, ConsoleColor c)
         {
             StringBuilder  b = new StringBuilder();
-
-            b.Append($"[{text.Level}] {text.Scope} {text.Text} {text.UtcStamp}");
+            
+            b.Append($"[{text.Level}] {text.Tags["scope"]} {text.Tags["text"]} {text.Tags["utc-stamp"]}");
 
             if (text.Tags != null)
             {
                 b.Append($" {SwoshTags(text.Tags)}");
             }
-            if (text.Data != null)
+            if (text.Extra != null)
             {
-                b.Append($" {SwoshData(text.Data)}");
+                b.Append($" {SwoshData(text.Extra)}");
             }
 
             ConsoleColor colorRestore = Console.ForegroundColor;
