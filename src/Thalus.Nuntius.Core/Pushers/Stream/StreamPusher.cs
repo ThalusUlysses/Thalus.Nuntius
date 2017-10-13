@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Thalus.Nuntius.Core.Contracts;
 
-namespace Thalus.Nuntius.Core.Pushers
+namespace Thalus.Nuntius.Core.Pushers.Stream
 {
     /// <summary>
     /// Implements the <see cref="ILeveledPusher{T}"/> to write on <see cref="Stream"/>
@@ -19,7 +19,7 @@ namespace Thalus.Nuntius.Core.Pushers
         /// <param name="stm">Pass the <see cref="Stream"/> to write to</param>
         /// <param name="stringifier">Pass the to be used <see cref="IStringifier{T}"/></param>
         /// <param name="logLevels">Pass the <see cref="Level"/> flags associated with the <see cref="ILeveledPusher{T}"/></param>
-        public StreamPusher(Stream stm, IStringifier<TType> stringifier, Level logLevels)
+        public StreamPusher(System.IO.Stream stm, IStringifier<TType> stringifier, Level logLevels)
         {
             _logLevels = logLevels;
             _stringifier = stringifier;

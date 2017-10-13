@@ -5,7 +5,7 @@ using System.Threading;
 using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Stringify;
 
-namespace Thalus.Nuntius.Core.Receivers
+namespace Thalus.Nuntius.Core.Pushers.Pipe
 {
     /// <summary>
     /// Implements the <see cref="NamedPipeReceiver{T}"/> and the <see cref="IReceiver{T}"/>

@@ -13,6 +13,11 @@ namespace Thalus.Nuntius.Core.Stringify
     {
         string IStringifier<TType>.Stringify(TType obj)
         {
+            if (obj == null)
+            {
+                return null;
+            }
+
             var json = JsonConvert.SerializeObject(obj);
             var xml =  JsonConvert.DeserializeXmlNode(json, "trace");
 

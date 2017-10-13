@@ -4,7 +4,7 @@ using System.Threading;
 using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Stringify;
 
-namespace Thalus.Nuntius.Core.Pushers
+namespace Thalus.Nuntius.Core.Pushers.Pipe
 {
     /// <summary>
     ///Implements the <see cref="NamedPipePusher{T}"/> functionality such like <see cref="Push"/>

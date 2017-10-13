@@ -5,24 +5,25 @@ using SharpRaven;
 using SharpRaven.Data;
 using Thalus.Nuntius.Core.Contracts;
 
-namespace Thalus.Nuntius.Externals
+namespace Thalus.Nuntius.Externals.Pushers.Sentry
 {
-    public class SentryTraceWriter<TType> : ILeveledPusher<TType> where TType: IEntry
+    public class SentryPusher<TType> : ILeveledPusher<TType> where TType: IEntry
     {
         private Level _level;
 
         private readonly IRavenClient _client;
 
-        public SentryTraceWriter(string dsn, Level level) : this(new RavenClient(dsn), level)
+        public SentryPusher(string dsn, Level level) : this(new RavenClient(dsn), level)
         {
 
         }
 
-        public SentryTraceWriter(IRavenClient client, Level level)
+        public SentryPusher(IRavenClient client, Level level)
         {
             _client = client;
             _level = level;
         }
+
 
         public void Push(TType entries)
         {

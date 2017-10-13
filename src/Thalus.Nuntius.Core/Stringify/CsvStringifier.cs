@@ -12,6 +12,11 @@ namespace Thalus.Nuntius.Core.Stringify
     {
         string IStringifier<IEntry>.Stringify(IEntry e)
         {
+            if (e == null)
+            {
+                return null;
+            }
+
             StringBuilder b = new StringBuilder();
 
             b.Append($"{e.Tags["utc-stamp"]},");

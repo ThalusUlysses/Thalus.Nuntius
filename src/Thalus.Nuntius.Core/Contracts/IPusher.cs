@@ -1,5 +1,6 @@
 using System;
 using Thalus.Nuntius.Core.Pushers;
+using Thalus.Nuntius.Core.Pushers.File;
 
 namespace Thalus.Nuntius.Core.Contracts
 {

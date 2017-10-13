@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Stringify;
 
-namespace Thalus.Nuntius.Core.Pushers
+namespace Thalus.Nuntius.Core.Pushers.Text
 {
     /// <summary>
     /// Implements a <see cref="ILeveledPusher{T}"/> functionality as Debug trace writer

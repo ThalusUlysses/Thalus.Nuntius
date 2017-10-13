@@ -3,7 +3,7 @@ using System.IO;
 using Thalus.Nuntius.Core.Contracts;
 using Thalus.Nuntius.Core.Stringify;
 
-namespace Thalus.Nuntius.Core.Pushers
+namespace Thalus.Nuntius.Core.Pushers.File
 {
     /// <summary>
     /// Implements the <see cref="ILeveledPusher{T}"/> functionality as single file
@@ -134,7 +134,7 @@ namespace Thalus.Nuntius.Core.Pushers
             {
                 try
                 {
-                    if (!File.Exists(FullName))
+                    if (!System.IO.File.Exists(FullName))
                     {
                         FileInfo fi = new FileInfo(FullName);
 
@@ -147,7 +147,7 @@ namespace Thalus.Nuntius.Core.Pushers
                     }
 
                     string st = _stringifier.Stringify(entry);
-                    File.AppendAllLines(FullName, new[] {st});
+                    System.IO.File.AppendAllLines(FullName, new[] {st});
                 }
                 catch (Exception e)
                 {

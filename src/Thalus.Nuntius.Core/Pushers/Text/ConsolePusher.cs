@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json.Serialization;
 using Thalus.Nuntius.Core.Contracts;
 
-namespace Thalus.Nuntius.Core.Pushers
+namespace Thalus.Nuntius.Core.Pushers.Text
 {
     /// <summary>
     /// Implements <see cref="ITraceWriter"/> functionality as Console writer.
