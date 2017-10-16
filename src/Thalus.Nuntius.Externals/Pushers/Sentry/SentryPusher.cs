@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SharpRaven;
 using SharpRaven.Data;
-using Thalus.Nuntius.Core.Contracts;
+using Thalus.Nuntius.Contracts;
 
 namespace Thalus.Nuntius.Externals.Pushers.Sentry
 {

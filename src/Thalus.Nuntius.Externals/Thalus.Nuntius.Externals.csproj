@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Thalus.Nuntius.Core\Thalus.Nuntius.Core.csproj" />
+    <ProjectReference Include="..\Thalus.Nuntius\Thalus.Nuntius.csproj" />
   </ItemGroup>
 
 </Project>

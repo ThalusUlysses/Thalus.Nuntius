@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Thalus Ulysses</Authors>
+    <Company>None</Company>
+    <Description>Thalus Nuntius is a small extensible library that wraps a set of tracing and logging functionality.</Description>
+    <Copyright>Thalus Ulysses</Copyright>
+    <AssemblyName>Thalus.Nuntius</AssemblyName>
+    <RootNamespace>Thalus.Nuntius</RootNamespace>
+    <PackageLicenseUrl>https://github.com/ThalusUlysses/Thalus.Nuntius/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ThalusUlysses/Thalus.Nuntius</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ThalusUlysses/Thalus.Nuntius</RepositoryUrl>
+    <RepositoryType>Code</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\Thalus.Nuntius.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+</Project>

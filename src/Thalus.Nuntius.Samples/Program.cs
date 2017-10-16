@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
-using Thalus.Nuntius.Core.Tracing;
-using Thalus.Nuntius.Core.Tracing.Contracts;
+using Thalus.Nuntius.Tracing;
+using Thalus.Nuntius.Tracing.Contracts;
 
 namespace Thalus.Nuntius.Samples
 {
